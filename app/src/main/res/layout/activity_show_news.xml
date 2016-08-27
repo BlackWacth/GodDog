@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hua.goddog.ui.activity.hotspot.ShowNewsActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/abl_show_news_appbarlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tb_show_news_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <WebView
+        android:id="@+id/wv_show_news_webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/abl_show_news_appbarlayout"
+        android:scrollbars="none"/>
+
+</RelativeLayout>
