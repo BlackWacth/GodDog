@@ -7,5 +7,6 @@
     <color name="write">#FFFFFF</color>
     <color name="gray400">#BDBDBD</color>
     <color name="gray100">#F5F5F5</color>
+    <color name="black">#000000</color>
 
 </resources>

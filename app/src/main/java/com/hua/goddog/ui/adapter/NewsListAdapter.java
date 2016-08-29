@@ -31,7 +31,7 @@ public class NewsListAdapter extends BaseQuickAdapter<NewsList.TngouBean> {
 
     @Override
     protected void convert(BaseViewHolder holder, final NewsList.TngouBean tngou) {
-        Glide.with(mContext).load(IMAGE_BASE_URL + tngou.getImg()).crossFade().into((ImageView) holder.getView(R.id.iv_item_news_icon));
+        Glide.with(mContext).load(IMAGE_BASE_URL + tngou.getImg()).placeholder(R.mipmap.pikachu).into((ImageView) holder.getView(R.id.iv_item_news_icon));
         holder.setText(R.id.tv_item_news_title, tngou.getTitle());
         holder.setText(R.id.tv_item_news_address, tngou.getFromname());
         holder.setText(R.id.tv_item_news_time, C.simpleDataFormat.format(new Date(tngou.getTime())));

@@ -1,6 +1,8 @@
 package com.hua.goddog.net;
 
 import com.hua.goddog.entity.HttpResult;
+import com.hua.goddog.entity.gallery.Gallery;
+import com.hua.goddog.entity.hotspot.NewsList;
 import com.hua.goddog.global.C;
 import com.hua.goddog.net.api.GalleryApi;
 import com.hua.goddog.net.api.HotspotApi;
@@ -44,11 +46,11 @@ public class HttpManager {
         createObservable(loadHotspot().getClassify()).subscribe(subscriber);
     }
 
-    public void getNewsList(int id, int page, int rows, Subscriber subscriber) {
+    public void getNewsList(int id, int page, int rows, Subscriber<NewsList> subscriber) {
         createObservable(loadHotspot().getNews(id, page, rows)).subscribe(subscriber);
     }
 
-    public void getNewsList(int id, int page, Subscriber subscriber) {
+    public void getNewsList(int id, int page, Subscriber<NewsList> subscriber) {
         getNewsList(id, page, C.DEFAULT_ROWS, subscriber);
     }
 
@@ -66,5 +68,9 @@ public class HttpManager {
 
     public void getGalleryList(int id, int page, Subscriber subscriber) {
         getGalleryList(id, page, C.DEFAULT_ROWS, subscriber);
+    }
+
+    public void getGallery(int id, Subscriber<Gallery> subscriber) {
+        createObservable(loadGallery().getGallery(id)).subscribe(subscriber);
     }
 }

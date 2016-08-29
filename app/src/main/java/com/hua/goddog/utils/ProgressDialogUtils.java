@@ -10,11 +10,14 @@ import android.content.Context;
 public class ProgressDialogUtils {
 
     public static ProgressDialog showProgressDialog(Context context) {
-        ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("正在加载...");
-        progressDialog.setIndeterminate(true);
-        progressDialog.show();
-        return progressDialog;
+        if(context != null) {
+            ProgressDialog progressDialog = new ProgressDialog(context);
+            progressDialog.setMessage("正在加载...");
+            progressDialog.setIndeterminate(true);
+            progressDialog.show();
+            return progressDialog;
+        }
+        return null;
     }
 
     public static void hideProgressDialog(ProgressDialog progressDialog) {

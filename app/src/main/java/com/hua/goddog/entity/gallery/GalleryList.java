@@ -142,19 +142,35 @@ public class GalleryList extends HttpResult {
             this.title = title;
         }
 
+//        @Override
+//        public String toString() {
+//            return "Tngou{" +
+//                    "\ncount=" + count +
+//                    ", \nfcount=" + fcount +
+//                    ", \ngalleryclass=" + galleryclass +
+//                    ", \nid=" + id +
+//                    ", \nimg='" + img + '\'' +
+//                    ", \nrcount=" + rcount +
+//                    ", \nsize=" + size +
+//                    ", \ntime=" + time +
+//                    ", \ntitle='" + title + '\'' +
+//                    "\n}";
+//        }
+
+
         @Override
         public String toString() {
             return "Tngou{" +
-                    "\ncount=" + count +
-                    ", \nfcount=" + fcount +
-                    ", \ngalleryclass=" + galleryclass +
-                    ", \nid=" + id +
-                    ", \nimg='" + img + '\'' +
-                    ", \nrcount=" + rcount +
-                    ", \nsize=" + size +
-                    ", \ntime=" + time +
-                    ", \ntitle='" + title + '\'' +
-                    "\n}";
+                    "count=" + count +
+                    ", fcount=" + fcount +
+                    ", galleryclass=" + galleryclass +
+                    ", id=" + id +
+                    ", img='" + img + '\'' +
+                    ", rcount=" + rcount +
+                    ", size=" + size +
+                    ", time=" + time +
+                    ", title='" + title + '\'' +
+                    '}';
         }
     }
 

@@ -27,7 +27,6 @@ import java.util.List;
 
 import rx.Subscriber;
 
-
 /**
  * 热点模块
  */
@@ -84,13 +83,11 @@ public class NewsListFragment extends BaseFragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mNewsListAdapter = new NewsListAdapter(R.layout.item_news, mList);
         mNewsListAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
-        mNewsListAdapter.isFirstOnly(true);
         mRecyclerView.setAdapter(mNewsListAdapter);
     }
 
     @Override
     protected void addListener() {
-
         mNewsListAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
@@ -114,7 +111,7 @@ public class NewsListFragment extends BaseFragment {
                         if(mNewsListAdapter.getData().size() >= totalCounter) {
                             mNewsListAdapter.loadComplete();
                         } else {
-                            L.i("load more ++++++++++ " + newsList.getTngou().toString());
+                            L.i("load more +++" + newsList.getTngou().toString());
                             mNewsListAdapter.addData(newsList.getTngou());
                         }
                     }
@@ -152,7 +149,6 @@ public class NewsListFragment extends BaseFragment {
                         if(mList != null) {
                             mList.clear();
                             totalCounter = newsList.getTotal();
-                            L.i("totalCounter = " + totalCounter);
                             if(totalCounter % 10 == 0) {
                                 totalPage = totalCounter / 10;
                             } else {
@@ -170,30 +166,29 @@ public class NewsListFragment extends BaseFragment {
 
     @Override
     protected void onVisible() {
-        L.i("onVisible");
+        L.i("NewsListFragment : onVisible");
         loadNewsList();
     }
 
     private void loadNewsList() {
-        L.i("frist page = " + currentPage);
         currentPage = 1;
-        HttpManager.getInstance()
-                .getNewsList(id, currentPage, new MSubscriber(ProgressDialogUtils.showProgressDialog(getActivity())) {
-                    @Override
-                    protected void onSuccess(HttpResult httpResult) {
-                        NewsList newsList = (NewsList) httpResult;
-                        totalCounter = newsList.getTotal();
-                        L.i("totalCounter = " + totalCounter);
-                        if(totalCounter % 10 == 0) {
-                            totalPage = totalCounter / 10;
-                        } else {
-                            totalPage = totalCounter / 10 + 1;
-                        }
-                        L.i("totalPage = " + totalPage);
-                        L.i("first -----------> " + newsList.getTngou().toString());
-                        mList.addAll(newsList.getTngou());
-                        mNewsListAdapter.notifyDataSetChanged();
-                    }
-                });
+        HttpManager.getInstance().getNewsList(id, currentPage, new MSubscriber<NewsList>(ProgressDialogUtils.showProgressDialog(getContext())) {
+            @Override
+            protected void onSuccess(NewsList newsList) {
+                if(mList == null) {
+                    return;
+                }
+                mList.clear();
+                totalCounter = newsList.getTotal();
+                if(totalCounter % 10 == 0) {
+                    totalPage = totalCounter / 10;
+                } else {
+                    totalPage = totalCounter / 10 + 1;
+                }
+                L.i("first --> " + newsList.getTngou().toString());
+                mList.addAll(newsList.getTngou());
+                mNewsListAdapter.notifyDataSetChanged();
+            }
+        });
     }
 }

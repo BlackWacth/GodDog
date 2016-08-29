@@ -1,11 +1,13 @@
 package com.hua.goddog.ui.base;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.hua.goddog.utils.L;
@@ -17,6 +19,8 @@ import com.hua.goddog.utils.L;
 public abstract class BaseFragment extends Fragment {
 
     protected View mRootView;
+
+    private ProgressDialog mProgressDialog;
 
     protected boolean isParepared = false;
     protected boolean isVisible = false;
@@ -59,6 +63,7 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected void loadData() {
+        L.i("BaseFragment : loadData");
         if(!isParepared || !isVisible) {
             return ;
         }
@@ -84,5 +89,21 @@ public abstract class BaseFragment extends Fragment {
 
     protected void showToast(String text) {
         Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
+    }
+
+    protected void showProgressDialog() {
+        if(getContext() == null) {
+            return;
+        }
+        mProgressDialog = new ProgressDialog(getContext());
+        mProgressDialog.setMessage("正在加载.....");
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.show();
+    }
+
+    protected void closeProgressDialog() {
+        if(mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
     }
 }

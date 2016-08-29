@@ -70,8 +70,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         mMainAdapter = new MainAdapter(getSupportFragmentManager(), mList);
         mViewPager.setAdapter(mMainAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
-//        loadNewsClassify();
-        loadGalleryClassify();
+        loadNewsClassify();
+//        loadGalleryClassify();
     }
 
     @Override
@@ -111,10 +111,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         int id = item.getItemId();
 
         if (id == R.id.nav_hot_spot) {
-            L.i("nav_hot_spot");
             loadNewsClassify();
         } else if (id == R.id.nav_gallery) {
-            L.i("nav_gallery");
             loadGalleryClassify();
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);
@@ -131,7 +129,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 }
                 mList.clear();
                 mViewPager.removeAllViews();
-                L.i("mList -- news : " + mList.size());
                 Classify classify = (Classify) httpResult;
                 for (Classify.TngouBean tngou : classify.getTngou()) {
                     L.i(tngou.toString());
@@ -151,7 +148,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 }
                 mList.clear();
                 mViewPager.removeAllViews();
-                L.i("mList -- gallery : " + mList.size());
                 GalleryClassify classify = (GalleryClassify) httpResult;
                 for(GalleryClassify.TngouBean tngou : classify.getTngou()) {
                     L.i(tngou.toString());

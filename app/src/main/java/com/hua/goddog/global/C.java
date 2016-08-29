@@ -19,4 +19,8 @@ public class C {
     public static final int DEFAULT_ROWS = 10;
 
     public static final String EXTRA_NEWS_ID = "EXTRA_NEWS_ID";
+    public static final String EXTRA_GALLERY_ID = "EXTRA_NEWS_ID";
+
+    public final static String IMAGE_BASE_URL = "http://tnfs.tngou.net/img";
+
 }
